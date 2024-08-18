@@ -426,7 +426,7 @@ class YouTube:
         """
 
         innertube_response = InnerTube(
-            client=self.client,
+            client='WEB',
             use_oauth=self.use_oauth,
             allow_cache=self.allow_oauth_cache,
             token_file=self.token_file,
