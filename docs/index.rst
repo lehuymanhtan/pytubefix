@@ -57,7 +57,7 @@ of pytubefix.
    user/quickstart
    user/streams
    user/auth
-   user/mp3
+   user/m4a
    user/captions
    user/playlist
    user/channel
@@ -68,7 +68,11 @@ of pytubefix.
    user/chapters
    user/dubbed_streams
    user/keymoments
-   user/problematic_characters
+   user/po_token
+   user/info
+   user/output_path
+   user/buffer
+   user/proxy
 
 The API Documentation
 -----------------------------

@@ -1,202 +1,185 @@
-# pytubefix
+# Pytubefix
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/pytubefix)
-![GitHub Sponsors](https://img.shields.io/github/sponsors/juanbindez)
-![PyPI - License](https://img.shields.io/pypi/l/pytubefix)
-![Read the Docs](https://img.shields.io/readthedocs/pytubefix)
-![GitHub Tag](https://img.shields.io/github/v/tag/JuanBindez/pytubefix?include_prereleases)
-<a href="https://pypi.org/project/pytubefix/"><img src="https://img.shields.io/pypi/v/pytubefix" /></a>
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/pytubefix)](https://pypi.org/project/pytubefix/)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/juanbindez)](https://github.com/sponsors/juanbindez)
+[![PyPI - License](https://img.shields.io/pypi/l/pytubefix)](https://opensource.org/licenses/MIT)
+[![Read the Docs](https://img.shields.io/readthedocs/pytubefix)](https://pytubefix.readthedocs.io/)
+[![GitHub Tag](https://img.shields.io/github/v/tag/JuanBindez/pytubefix?include_prereleases)](https://github.com/JuanBindez/pytubefix/releases)
+[![PyPI - Version](https://img.shields.io/pypi/v/pytubefix)](https://pypi.org/project/pytubefix/)
 
+## Python3 Library for Downloading YouTube Videos
 
-## Python3 library for downloading YouTube Videos.
+---
 
-#### Thanks to sponsors:
+## Installation
 
-[![Sponsors dvaldivia](https://img.shields.io/badge/sponsors-dvaldivia-blue)](https://github.com/dvaldivia)
-[![J0E-E](https://img.shields.io/badge/Joey-blue)](https://github.com/J0E-E)
+```bash
+pip install pytubefix
+```
 
-----------
-## install
-
-    pip install pytubefix
-
+---
 
 ## Quickstart
 
-#### mp4 video download highest resolution:
+### Download MP4 Video in Highest Resolution:
 
 ```python
-
 from pytubefix import YouTube
 from pytubefix.cli import on_progress
- 
+
 url = "url"
- 
-yt = YouTube(url, on_progress_callback = on_progress)
+
+yt = YouTube(url, on_progress_callback=on_progress)
 print(yt.title)
- 
+
 ys = yt.streams.get_highest_resolution()
 ys.download()
 ```
 
-#### If you want to save in .mp3 just pass the mp3=True parameter (MPEG-4 AAC audio codec):
+### Download Audio-Only (.m4a):
 
 ```python
-
 from pytubefix import YouTube
 from pytubefix.cli import on_progress
- 
+
 url = "url"
- 
-yt = YouTube(url, on_progress_callback = on_progress)
+
+yt = YouTube(url, on_progress_callback=on_progress)
 print(yt.title)
- 
+
 ys = yt.streams.get_audio_only()
-ys.download(mp3=True)
+ys.download()
 ```
 
-#### if you want to download complete playlists:
+### Download a Complete Playlist:
 
 ```python
-
 from pytubefix import Playlist
 from pytubefix.cli import on_progress
- 
+
 url = "url"
 
 pl = Playlist(url)
-
 for video in pl.videos:
     ys = video.streams.get_audio_only()
-    ys.download(mp3=True)
-
+    ys.download()
 ```
 
-#### if you want to add authentication
+### Use OAuth Authentication:
 
 ```python
-
 from pytubefix import YouTube
 from pytubefix.cli import on_progress
- 
+
 url = "url"
 
-yt = YouTube(url, use_oauth=True, allow_oauth_cache=True, on_progress_callback = on_progress)
-           
+yt = YouTube(url, use_oauth=True, allow_oauth_cache=True, on_progress_callback=on_progress)
 ys = yt.streams.get_highest_resolution()
-
-ys.download() # you will only get the request to authenticate once you download
-
+ys.download()  # Authenticate once for subsequent downloads
 ```
 
-## Subtitle/Caption Tracks:
-
-#### viewing available subtitles:
+### Specify Output Directory for Downloads:
 
 ```python
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
 
+url = "url"
+
+yt = YouTube(url, on_progress_callback=on_progress)
+ys = yt.streams.get_highest_resolution()
+ys.download(output_path="path/to/directory")
+```
+
+---
+
+## Working with Subtitles/Caption Tracks
+
+### View Available Subtitles:
+
+```python
 from pytubefix import YouTube
 
 yt = YouTube('http://youtube.com/watch?v=2lAe1cqCOXo')
-subtitles = yt.captions
-
-print(subtitles)
-
+print(yt.captions)
 ```
 
-#### printing the subtitle tracks:
+### Print Subtitle Tracks:
 
 ```python
-
 from pytubefix import YouTube
- 
 
 yt = YouTube('http://youtube.com/watch?v=2lAe1cqCOXo')
-
-caption = yt.captions.get_by_language_code('en')
+caption = yt.captions['a.en']
 print(caption.generate_srt_captions())
-
 ```
 
-#### now you can save subtitles to a txt file:
+### Save Subtitles to a Text File:
 
 ```python
-
 from pytubefix import YouTube
- 
 
 yt = YouTube('http://youtube.com/watch?v=2lAe1cqCOXo')
-
-caption = yt.captions.get_by_language_code('en')
+caption = yt.captions['a.en']
 caption.save_captions("captions.txt")
-
 ```
 
-## Using Channels:
+---
 
-#### get the channel name:
+## Using Channels
+
+### Get Channel Name:
 
 ```python
-
 from pytubefix import Channel
 
 c = Channel("https://www.youtube.com/@ProgrammingKnowledge/featured")
-
 print(f'Channel name: {c.channel_name}')
-
 ```
 
-#### to download all videos from a channel:
-
+### Download All Videos from a Channel:
 
 ```python
-
 from pytubefix import Channel
 
 c = Channel("https://www.youtube.com/@ProgrammingKnowledge")
-
 print(f'Downloading videos by: {c.channel_name}')
 
 for video in c.videos:
-    download = video.streams.get_highest_resolution().download()
-
+    video.streams.get_highest_resolution().download()
 ```
 
-### Search:
+---
+
+## Search for Videos
+
+### Basic Search:
 
 ```python
->>> from pytubefix import Search
->>> 
->>> results = Search('Github Issue Best Practices')
->>> 
->>> for video in results.videos:
-...     print(f'Title: {video.title}')
-...     print(f'URL: {video.watch_url}')
-...     print(f'Duration: {video.length} seg')
-...     print('---')
-... 
-Title: Good Practices with GitHub Issues
-URL: https://youtube.com/watch?v=v1AeHaopAYE
-Duration: 406 seg
----
-Title: GitHub Issues Tips and Guidelines
-URL: https://youtube.com/watch?v=kezinXSoV5A
-Duration: 852 seg
----
-Title: 13 Advanced (but useful) Git Techniques and Shortcuts
-URL: https://youtube.com/watch?v=ecK3EnyGD8o
-Duration: 486 seg
----
-Title: Managing a GitHub Organization Tools, Tips, and Best Practices - Mark Matyas
-URL: https://youtube.com/watch?v=1T4HAPBFbb0
-Duration: 1525 seg
----
-Title: Do you know the best way to manage GitHub Issues?
-URL: https://youtube.com/watch?v=OccRyzAS4Vc
-Duration: 534 seg
----
->>>
+from pytubefix import Search
 
-
+results = Search('GitHub Issue Best Practices')
+for video in results.videos:
+    print(f'Title: {video.title}')
+    print(f'URL: {video.watch_url}')
+    print(f'Duration: {video.length} sec')
+    print('---')
 ```
 
+### Use Filters:
+
+```python
+from pytubefix.contrib.search import Search, Filter
+
+filters = {
+    'upload_date': Filter.get_upload_date('Today'),
+    'type': Filter.get_type("Video"),
+    'duration': Filter.get_duration("Under 4 minutes"),
+    'features': [Filter.get_features("4K"), Filter.get_features("Creative Commons")],
+    'sort_by': Filter.get_sort_by("Upload date")
+}
+
+s = Search('music', filters=filters)
+for video in s.videos:
+    print(video.watch_url)
+```

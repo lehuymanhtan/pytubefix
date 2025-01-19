@@ -7,26 +7,45 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+# 🛑 DO NOT REMOVE OR SKIP THIS ISSUE TEMPLATE 🛑  
+Issues with incomplete or missing information will be **closed automatically**.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+---
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## 🐞 **Bug Description**  
+Provide a clear and concise description of the bug.  
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+---
 
-**Desktop (please complete the following information):**
- - OS: [Your Operating System and Version]
- - Python Version [x.y.z]
- - Pytubefix Version [x.y.z]
+## 🔢 **Code Snippet**  
+Include the minimal code snippet that reproduces the issue.  
 
-**Additional context**
-Add any other context about the problem here.
+```python
+# Insert your code here
+```
+
+---
+
+## 🎯 **Expected Behavior**  
+Describe what you expected to happen instead of the observed behavior.  
+
+---
+
+## 📸 **Screenshots or Logs**  
+
+---
+
+## 🖥️ **Environment Details**  
+Fill in the details below about your setup:  
+- **Operating System:** [e.g., Windows 10, macOS Monterey]  
+- **Python Version:** [e.g., 3.9.7]  
+- **Pytubefix Version:** [e.g., 1.2.3]  
+
+---
+
+## 📋 **Additional Context**  
+Add any additional information or context that might help us resolve the issue.  
+
+---
+### 🚀 **Next Steps**  
+Once submitted, we will triage the issue. Make sure to respond to follow-up questions to keep the process smooth.
